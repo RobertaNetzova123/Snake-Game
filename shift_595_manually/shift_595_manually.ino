@@ -6,9 +6,10 @@
 */
 
 #define data  D7
-#define clock  D5
-#define latch  D6
-
+//#define latch  D6 // shift r clock
+//#define clock  D5 //storage clock
+#define clock  D6 // shift r clock
+#define latch  D5 //storage clock
 // create shift register object (number of shift registers, data pin, clock pin, latch pin)
 //ShiftRegister74HC595 sr (1, D7,D5,D6); 
 void setup() {
@@ -24,16 +25,16 @@ void setup() {
 void loop() {
 digitalWrite(data,HIGH);
   for (int i = 0; i< 7; i++) {
-    doLatch();
     doClock();
+    doLatch();
     }
   delay(1000);
 
   digitalWrite(data,LOW);
   for (int i = 0; i< 7; i++) {
-    doLatch();
-    }
     doClock();
+    }
+    doLatch();
     delay(1000);
 
 //doClock();
